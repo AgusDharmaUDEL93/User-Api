@@ -7,6 +7,7 @@
 
 class UserUseCases {
     let getAllUserUseCase = GetAllUserUseCase(userRepository: UserRepositoryImpl.shared)
+    let getUserDetailUseCase = GetUserDetailUseCase(userRepository: UserRepositoryImpl.shared)
     
     static let shared = UserUseCases()
 }

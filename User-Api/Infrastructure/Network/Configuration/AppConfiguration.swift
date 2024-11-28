@@ -10,6 +10,6 @@ class AppConfiguration  {
     static let shared = AppConfiguration()
     
     var baseURL: String {
-        return "https://dummyjson.com/users/"
+        return "https://dummyjson.com/"
     }
 }
