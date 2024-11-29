@@ -28,7 +28,7 @@ struct UserScreen : View {
                         ForEach(viewModel.user, id: \.id){ user in
                             Button(
                                 action: {
-                                    router.navigate(to: .userDetail(id: 1))
+                                    router.navigate(to: .userDetail(id: user.id))
                                 },
                                 label: {
                                     HStack {

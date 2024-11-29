@@ -25,7 +25,7 @@ class APIClient {
         return session.dataTaskPublisher(for: request)
             .tryMap{ output in
                 
-                if let httpResponse = output.response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode {
+                if let httpResponse = output.response as? HTTPURLResponse, !(200...299 ~= httpResponse.statusCode) {
                     switch httpResponse.statusCode {
                     case 400:
                         throw URLError(.requestBodyStreamExhausted)
