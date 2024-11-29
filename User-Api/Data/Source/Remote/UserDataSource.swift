@@ -9,11 +9,10 @@ import Combine
 import Foundation
 
 class UserDataSource {
-    private var apiClient = APIClient.shared
-    private var appConfiguration = AppConfiguration.shared
+    private var apiClient : APIClient = APIClient.shared
+    private var appConfiguration : AppConfiguration = AppConfiguration.shared
     
     static let shared = UserDataSource()
-    
     
     func getAllUser ()  -> AnyPublisher<UserDto, Error> {
         

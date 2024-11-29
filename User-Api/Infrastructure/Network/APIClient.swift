@@ -24,10 +24,21 @@ class APIClient {
         
         return session.dataTaskPublisher(for: request)
             .tryMap{ output in
-                guard let httpResponse = output.response as? HTTPURLResponse,
-                      200...299 ~= httpResponse.statusCode else {
-                    throw URLError(.badServerResponse)
+                
+                if let httpResponse = output.response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode {
+                    switch httpResponse.statusCode {
+                    case 400:
+                        throw URLError(.requestBodyStreamExhausted)
+                    case 401:
+                        throw  URLError(.userCancelledAuthentication)
+                    case 404:
+                        throw URLError(.fileDoesNotExist)
+                    default:
+                        throw URLError(.badServerResponse)
+                        
+                    }
                 }
+                
                 return output.data
             }
             .decode(type: T.self, decoder: JSONDecoder())

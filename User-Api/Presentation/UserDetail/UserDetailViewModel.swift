@@ -41,4 +41,8 @@ class UserDetailViewModel {
             )
             .store(in: &cancellables)
     }
+    
+    func clearErrorMessage() {
+        errorMessage = nil
+    }
 }

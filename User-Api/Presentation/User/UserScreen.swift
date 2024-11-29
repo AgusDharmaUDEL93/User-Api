@@ -19,23 +19,30 @@ struct UserScreen : View {
                     ProgressView()
                 }
             } else {
-                List {
-                    ForEach(viewModel.user, id: \.id){ user in
-                        Button(
-                            action: {
-                                router.navigate(to: .userDetail(id: 1))
-                            },
-                            label: {
-                                HStack {
-                                    Text (user.name)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
+                if (viewModel.user.isEmpty){
+                    VStack {
+                        Text("No user data")
+                    }
+                } else {
+                    List {
+                        ForEach(viewModel.user, id: \.id){ user in
+                            Button(
+                                action: {
+                                    router.navigate(to: .userDetail(id: 1))
+                                },
+                                label: {
+                                    HStack {
+                                        Text (user.name)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                    }
                                 }
-                            }
-                        )
-                        .buttonStyle(.plain)
+                            )
+                            .buttonStyle(.plain)
+                        }
                     }
                 }
+                
             }
         }
         .navigationTitle("List User")
